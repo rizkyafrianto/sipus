@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2023 at 12:09 PM
+-- Generation Time: Jul 27, 2023 at 07:50 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -62,9 +62,9 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `book_title`, `category`, `author`, `book_copies`, `publisher_name`, `is_borrowed`) VALUES
-(1, 'Pulang', 'Fantasy', 'Tere Liye', 5000, 'Gramedia', 0),
-(12, 'Meteor', 'Drama', 'Tere Liye', 5000, 'Gramedia', 0),
-(535, 'Harry', 'Fantasy', 'JK', 100, 'Gramedia', 0);
+(110, 'Harry', 'Fantasy', 'JK', 1000, 'Sunrise', 0),
+(123, 'Hujan', 'Fantasy', 'Tere Liye', 100, 'Gramedia', 0),
+(535, 'Meteor', 'Fantasy', 'Tere Liye', 100, 'Gramedia', 0);
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,9 @@ CREATE TABLE `borrow` (
   `idanggota` int(10) DEFAULT NULL,
   `date_borrow` date DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `date_return` date DEFAULT NULL
+  `date_return` date DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `book_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -168,13 +170,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `borrow`
 --
 ALTER TABLE `borrow`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `borrowdetails`
 --
 ALTER TABLE `borrowdetails`
-  MODIFY `borrowdetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `borrowdetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Constraints for dumped tables

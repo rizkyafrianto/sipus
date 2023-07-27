@@ -16,7 +16,8 @@ Peminjaman Buku:
 2. Catat tanggal peminjaman dan batas waktu pengembalian buku.
 
 Pengembalian Buku:
-1. Proses pengembalian buku oleh anggota.
+1. Proses pengembalian buku.
 
-project lms ini masih dalam pengerjaan
-saat ini, fitur yang masih belum tersedia adalah fitur pengemmbalian buku
+laporan transaksi buku
+
+Saat ini saya masih ingin memperbaiki dan menambah fitur lain dan juga terdapat error pada saat menghapus list transaksi buku
