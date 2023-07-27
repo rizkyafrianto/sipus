@@ -53,6 +53,8 @@
                                         <td>
                                             <center><?php echo $no . "."; ?><center>
                                         </td>
+                                        <!-- mengirim id book untuk eksekusi is_borrowed -->
+                                        <input type="hidden" name="book_id" value="<?php echo $row["book_id"]; ?>">
                                         <td>
                                             <center><?php echo $row['book_title'] ?></center>
                                         </td>

@@ -41,7 +41,7 @@
                                     <th>Books Copies</th>
                                     <th>Publisher</th>
                                     <th>Status</th>
-                                    <th>Select</th>
+                                    <th>Opsi</th>
                                 </tr>
                                 <?php
                                 $dml = "SELECT * FROM borrowdetails 
@@ -66,7 +66,7 @@
                                         <td><?php echo $row['is_borrowed'] == 1 ? "Dipinjam" : "Dikembalikan"; ?></td>
                                         <td>
                                             <center>
-                                                <a href="action/book_borrow_back.php?id=<?php echo $id; ?>&idx=<?php echo $idx; ?>" class="tombol" <?php echo $row['is_borrowed'] == 1 ? "" : "disabled"; ?>>Kembalikan</a>
+                                                <a href="proses/book_borrow_back.php?borrow_id=<?php echo $row['borrow_id']; ?>" class="tombol">Kembalikan</a>
                                             </center>
                                         </td>
                                     </tr>
