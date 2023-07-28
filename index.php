@@ -33,7 +33,7 @@ if (isset($_SESSION['auth'])) {
                      <a class="nav-link dropdown-toggle text-light" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle"></i>
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end">
-                        <li><a class="dropdown-item btn btn-tertiary" href="#"><i class="bi bi-person-fill"> <?php echo $_SESSION['auth']; ?>!</i>
+                        <li><a class="dropdown-item btn btn-tertiary" href="#"><i class="bi bi-person-fill"> <?php echo $_SESSION['auth']; ?></i>
                            </a>
                         </li>
                         <li>

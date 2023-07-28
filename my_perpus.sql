@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2023 at 07:50 PM
+-- Generation Time: Jul 28, 2023 at 10:32 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `admins` (
   `id_admin` int(5) NOT NULL,
   `nm_admin` varchar(35) NOT NULL,
-  `username` varchar(35) NOT NULL,
-  `password` varchar(35) NOT NULL
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -39,7 +39,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `nm_admin`, `username`, `password`) VALUES
-(1, 'admin', 'admin@gmail.com', 'admin');
+(1, 'admin', 'admin@gmail.com', '$2y$10$9Ehl8Lt5iJDkSLvg.nbyAOajF4RKPYkVxfk/qI4453bTOfJa63MGS'),
+(2, 'dev', 'developer@gmail.com', '$2y$10$9Ehl8Lt5iJDkSLvg.nbyAOajF4RKPYkVxfk/qI4453bTOfJa63MGS');
 
 -- --------------------------------------------------------
 
@@ -164,7 +165,7 @@ ALTER TABLE `tbanggota`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `borrow`

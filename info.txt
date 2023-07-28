@@ -1,3 +1,8 @@
 login: 
 admin@gmail.com  
-admin
+password
+
+developer@gmail.com
+password
+
+dalam database, kolom password pada table admins berisi nilai yang di HASH

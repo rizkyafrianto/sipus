@@ -37,9 +37,9 @@ if (isset($_SESSION["auth"])) {
          </div>
          <form class="login-form" method="post" action="proses/cek_login.php">
             <!-- input username -->
-            <input type="text" name="user" id="username" placeholder="Username">
+            <input type="text" name="username" id="username" placeholder="Username">
             <!-- input password -->
-            <input type="password" name="pass" id="password" placeholder="Password">
+            <input type="password" name="password" id="password" placeholder="Password">
             <!-- button submit -->
             <button class="submit-button" type="submit" name="login">sign in</button>
          </form>

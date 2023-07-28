@@ -1,28 +1,36 @@
 <?php
 session_start();
-$_SESSION['auth'] = NULL;
 
 include "../koneksi.php";
 
-if (isset($_POST['login'])) {
-    $user = isset($_POST['user']) ? $_POST['user'] : "";
-    $pass = isset($_POST['pass']) ? $_POST['pass'] : "";
+// set login logic
+if (isset($_POST["login"])) {
 
-    $qry = mysqli_query($db, "SELECT * FROM admins WHERE username = '$user' AND password = '$pass'");
-    $sesi = mysqli_num_rows($qry);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    if ($sesi == 1) {
+    $result = mysqli_query($db, "SELECT * FROM admins WHERE username = '$username'");
 
-        $data_admin    = mysqli_fetch_array($qry);
-        $_SESSION['id_admin'] = $data_admin['id_admin'];
-        $_SESSION['auth'] = $data_admin['nm_admin'];
+    // cek username
+    if (mysqli_num_rows($result) === 1) {
 
-        echo "<script>alert('Anda berhasil Log In');</script>";
-        echo "<meta http-equiv='refresh' content='0; url=../index.php?user=" . $_SESSION['auth'] . "'>";
-    } else {
-        echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
-        echo "<script>alert('Anda Gagal Log In');</script>";
+        // cek password 
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"])) {
+
+            // set session
+            $_SESSION["auth"] = true;
+            // Menyimpan nama admin ke dalam session
+            $_SESSION['auth'] = $row['nm_admin'];
+
+            echo "<script>alert('Anda berhasil Log In');</script>";
+            echo "<meta http-equiv='refresh' content='0; url=../index.php'>";
+            exit;
+        } else {
+            echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
+            echo "<script>alert('Anda Gagal Log In');</script>";
+        }
     }
-} else {
-    include "login.php";
+
+    $error = true;
 }
