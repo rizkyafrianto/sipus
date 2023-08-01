@@ -34,7 +34,8 @@ if (isset($_GET['borrow_id'])) {
          mysqli_commit($db);
 
          // Redirect back to the listborrow page after successful return
-         header("location:../index.php?p=listreturn");
+         echo "<script>alert('Buku berhasil dikembalikan');</script>";
+         echo "<meta http-equiv='refresh' content='0;url=../index.php?p=listreturn'>";
          exit;
       }
    }

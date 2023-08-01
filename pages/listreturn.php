@@ -1,5 +1,5 @@
 <div id="label-page">
-   <h3>List Pengembalian Buku</h3>
+   <h3>Laporan Pengembalian Buku</h3>
 </div>
 <div id="content">
    <table id="tabel-tampil">
@@ -14,7 +14,7 @@
          <th>Action</th>
       </tr>
       <?php
-      include "koneksi.php";
+      include __DIR__ . '/../koneksi.php';
 
       // Query untuk mendapatkan data buku yang sudah dikembalikan
       $query = "SELECT a.idanggota, a.nama, a.email, b.borrow_id, b.date_borrow, b.due_date, b.date_return, c.book_id, c.book_title
@@ -40,7 +40,7 @@
             <td><?php echo $row['due_date']; ?></td>
             <td><?php echo $row['date_return']; ?></td>
             <td>
-               <a href="proses/hapus_transaksi.php?borrow_id=<?php echo $row['borrow_id']; ?>">Hapus Transaksi</a>
+               <a href="proses/hapus_transaksi.php?borrow_id=<?php echo $row['borrow_id']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')">Hapus Transaksi</a>
             </td>
          </tr>
       <?php

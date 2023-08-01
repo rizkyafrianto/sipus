@@ -19,17 +19,13 @@ if (isset($_GET['borrow_id'])) {
          // Commit the transaction
          mysqli_commit($db);
 
-         // Redirect back to the laporan_pengembalian page after successful deletion
-         header("location: ../pages/listreturn.php");
+         echo "<script>alert('Laporan transaksi berhasil dihapus');</script>";
+         echo "<meta http-equiv='refresh' content='0;url=../index.php?p=listreturn'>";
          exit;
       } else {
-         mysqli_rollback($db); // Rollback the transaction if there's an error
-         // Log or handle the error appropriately
-         // Redirect to an error page or display an error message
+         mysqli_rollback($db);
       }
    } else {
-      mysqli_rollback($db); // Rollback the transaction if there's an error
-      // Log or handle the error appropriately
-      // Redirect to an error page or display an error message
+      mysqli_rollback($db);
    }
 }
