@@ -30,6 +30,9 @@ if (isset($_POST["login"])) {
             echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
             echo "<script>alert('Anda Gagal Log In');</script>";
         }
+    } else {
+        echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
+        echo "<script>alert('Anda Gagal Log In');</script>";
     }
 
     $error = true;

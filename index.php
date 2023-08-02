@@ -37,7 +37,7 @@ if (isset($_SESSION['auth'])) {
                            </a>
                         </li>
                         <li>
-                           <a href="logout.php" class="dropdown-item btn btn-tertiary"><i class="bi bi-box-arrow-in-right"> Logout</i></a>
+                           <a href="logout.php" onclick="return confirm('apakah yakin ingin logout?')" class="dropdown-item btn btn-tertiary"><i class="bi bi-box-arrow-in-right"> Logout</i></a>
 
                         </li>
                      </ul>
