@@ -64,7 +64,7 @@ if (isset($_SESSION['auth'])) {
                <li><a href="index.php?p=listborrow"><i class="bi bi-clipboard-data"></i> Borrow</a></li>
                <li><a href="index.php?p=listreturn"><i class="bi bi-layer-backward"></i> Return</a></li>
             </ul>
-            <p class="label-navigasi" style="color: white;"><a href="index.php?p=transaksi-peminjaman" style="color: white;">Laporan Transaksi</a></p>
+            <p class="label-navigasi" style="color: white;">Laporan Transaksi</p>
          </div>
          <div id="content-container">
             <div class="container p-3">

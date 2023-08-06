@@ -35,7 +35,7 @@ if (isset($_SESSION["auth"])) {
                Login
             </h2>
          </div>
-         <form class="login-form" method="post" action="proses/cek_login.php">
+         <form class="login-form" method="post" action="proses/login_validation.php">
             <!-- input username -->
             <input type="text" name="username" id="username" placeholder="Username">
             <!-- input password -->

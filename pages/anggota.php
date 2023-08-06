@@ -2,7 +2,7 @@
    <h3>List Data Anggota</h3>
 </div>
 <div id="content">
-   <nav class="navbar navbar-expand-lg bg-body-tertiary mb-3">
+   <nav class="navbar navbar-expand bg-body-tertiary mb-3">
       <div class="container-fluid">
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-lg-0">
