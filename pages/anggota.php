@@ -74,26 +74,26 @@
          }
 
          //$sql="SELECT * FROM tbanggota ORDER BY idanggota DESC";
-         $q_tampil_anggota = mysqli_query($db, $query);
-         if (mysqli_num_rows($q_tampil_anggota) > 0) {
-            while ($r_tampil_anggota = mysqli_fetch_array($q_tampil_anggota)) {
-               if (empty($r_tampil_anggota['foto']) or ($r_tampil_anggota['foto'] == '-'))
+         $data = mysqli_query($db, $query);
+         if (mysqli_num_rows($data) > 0) {
+            while ($row = mysqli_fetch_array($data)) {
+               if (empty($row['foto']) or ($row['foto'] == '-'))
                   $foto = "admin-no-photo.jpg";
                else
-                  $foto = $r_tampil_anggota['foto'];
+                  $foto = $row['foto'];
          ?>
                <tr>
                   <td><?php echo $nomor; ?></td>
-                  <td><?php echo $r_tampil_anggota['idanggota']; ?></td>
-                  <td><?php echo $r_tampil_anggota['nama']; ?></td>
-                  <td><?php echo $r_tampil_anggota['email']; ?></td>
+                  <td><?php echo strip_tags($row['idanggota']); ?></td>
+                  <td><?php echo strip_tags($row['nama']); ?></td>
+                  <td><?php echo strip_tags($row['email']); ?></td>
                   <td><img class="img rounded-circle" src="images/<?php echo $foto; ?>" width=40px height=40px></td>
-                  <td><?php echo $r_tampil_anggota['jeniskelamin']; ?></td>
-                  <td><?php echo $r_tampil_anggota['alamat']; ?></td>
+                  <td><?php echo strip_tags($row['jeniskelamin']); ?></td>
+                  <td><?php echo strip_tags($row['alamat']); ?></td>
                   <td>
-                     <a target="_blank" class="btn btn-sm btn-success" href="pages/cetak_kartu.php?id=<?php echo $r_tampil_anggota['idanggota']; ?>"><i class="bi bi-printer"></i></a>
-                     <a class="btn btn-sm btn-warning" href="index.php?p=anggota-edit&id=<?php echo $r_tampil_anggota['idanggota']; ?>"><i class="bi bi-pencil"></i></a>
-                     <a class="btn btn-sm btn-danger" href="proses/anggota-hapus.php?id=<?php echo $r_tampil_anggota['idanggota']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
+                     <a target="_blank" class="btn btn-sm btn-success" href="pages/cetak_kartu.php?id=<?php echo $row['idanggota']; ?>"><i class="bi bi-printer"></i></a>
+                     <a class="btn btn-sm btn-warning" href="index.php?p=anggota-edit&id=<?php echo $row['idanggota']; ?>"><i class="bi bi-pencil"></i></a>
+                     <a class="btn btn-sm btn-danger" href="proses/anggota-hapus.php?id=<?php echo $row['idanggota']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
                   </td>
                </tr>
          <?php $nomor++;

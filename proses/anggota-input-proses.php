@@ -2,7 +2,7 @@
 include '../koneksi.php';
 
 // validation idanggota
-$idanggota = $_POST['idanggota'];
+$idanggota = isset($_POST['idanggota']) ? mysqli_real_escape_string($db, $_POST['idanggota']) : '';
 
 // Query untuk mencari ID anggota yang sudah terdaftar
 $query = "SELECT * FROM tbanggota WHERE idanggota = '$idanggota'";
@@ -13,13 +13,12 @@ if (mysqli_num_rows($result) > 0) {
 	echo "<meta http-equiv='refresh' content='0;url=../index.php?p=anggota-input'>";
 	exit;
 } else {
-	// Lanjutkan proses simpan data atau tindakan lain jika ID anggota belum ada
 
-	$nama = $_POST['nama'];
-	$email = $_POST['email'];
-	$jenis_kelamin = $_POST['jenis_kelamin'];
-	$alamat = $_POST['alamat'];
-	$status = "Tidak Meminjam";
+	// prevent sql inject
+	$nama = isset($_POST['nama']) ? mysqli_real_escape_string($db, $_POST['nama']) : '';
+	$email = isset($_POST['email']) ? mysqli_real_escape_string($db, $_POST['email']) : '';
+	$jenis_kelamin = isset($_POST['jenis_kelamin']) ? mysqli_real_escape_string($db, $_POST['jenis_kelamin']) : '';
+	$alamat = isset($_POST['alamat']) ? mysqli_real_escape_string($db, $_POST['alamat']) : '';
 	$file_foto = "";
 
 	if (isset($_POST['simpan'])) {
@@ -38,14 +37,12 @@ if (mysqli_num_rows($result) > 0) {
 		} else
 			$file_foto = "-";
 
-		$sql =
-			"INSERT INTO tbanggota
-			VALUES('$idanggota','$nama', '$email','$jenis_kelamin','$alamat','$status','$file_foto')";
-		$query = mysqli_query($db, $sql);
+		$stmt = $db->prepare("INSERT INTO tbanggota (idanggota, nama, email, jeniskelamin, alamat, foto) VALUES (?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("ssssss", $idanggota, $nama, $email, $jenis_kelamin, $alamat, $file_foto);
+		$stmt->execute();
+		$stmt->close();
 
 		echo "<script>alert('data barhasil ditambahkan');</script>";
 		echo "<meta http-equiv='refresh' content='0;url=../index.php?p=anggota'>";
-
-		// header("location:../index.php?p=anggota");
 	}
 }

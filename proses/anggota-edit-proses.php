@@ -1,11 +1,13 @@
 <?php
 include '../koneksi.php';
 
-$idanggota = $_POST['idanggota'];
-$nama = $_POST['nama'];
-$email = $_POST['email'];
-$jenis_kelamin = $_POST['jenis_kelamin'];
-$alamat = $_POST['alamat'];
+// prevent sql inject
+$idanggota = isset($_POST['idanggota']) ? mysqli_real_escape_string($db, $_POST['idanggota']) : '';
+$nama = isset($_POST['nama']) ? mysqli_real_escape_string($db, $_POST['nama']) : '';
+$email = isset($_POST['email']) ? mysqli_real_escape_string($db, $_POST['email']) : '';
+$jenis_kelamin = isset($_POST['jenis_kelamin']) ? mysqli_real_escape_string($db, $_POST['jenis_kelamin']) : '';
+$alamat = isset($_POST['alamat']) ? mysqli_real_escape_string($db, $_POST['alamat']) : '';
+
 
 if (isset($_POST['simpan'])) {
 
@@ -24,12 +26,12 @@ if (isset($_POST['simpan'])) {
 	} else
 		$file_foto = $foto_awal;
 
-	mysqli_query(
-		$db,
-		"UPDATE tbanggota
-		SET nama='$nama', email='$email',  jeniskelamin='$jenis_kelamin',alamat='$alamat',foto='$file_foto'
-		WHERE idanggota='$idanggota'"
-	);
+	// using prepare statement
+	$stmt = $db->prepare("UPDATE tbanggota SET nama=?, email=?, jeniskelamin=?, alamat=?, foto=? WHERE idanggota=?");
+	$stmt->bind_param("ssssss", $nama, $email, $jenis_kelamin, $alamat, $file_foto, $idanggota);
+	$stmt->execute();
+	$stmt->close();
+
 	echo "<script>alert('data anggota barhasil diupdate');</script>";
 	echo "<meta http-equiv='refresh' content='0;url=../index.php?p=anggota'>";
 }

@@ -81,7 +81,7 @@ body {
 
 #content-container {
    float: left;
-   width: 88%;
+   width: 89.2%;
    background-color: #fff;
 }
 
@@ -205,3 +205,35 @@ body {
 }
 
 /*--end of pages--*/
+
+/* @media (max-width: 767px) {
+   #sidebar {
+      display: none;
+   }
+
+   #content-container {
+      width: 100%;
+   }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+   #sidebar {
+      display: none;
+   }
+
+   #content-container {
+      width: 100%;
+   }
+
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+   #sidebar {
+      display: none;
+   }
+
+   #content-container {
+      width: 100%;
+   }
+} */

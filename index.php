@@ -24,7 +24,7 @@ if (isset($_SESSION['auth'])) {
       <nav class="navbar navbar-expand mb-2">
          <div class="container">
             <div class="d-flex">
-               <a class="navbar-brand text-light" href="#"><i class="bi bi-book"></i> PERPUSTAKAAN UMUM</a>
+               <a class="navbar-brand text-light" href="#"><i class="bi bi-book"></i> PERPUSTAKAAN</a>
             </div>
 
             <div class="navbar-collapse justify-content-end">

@@ -9,11 +9,6 @@
                <li class="nav-item mx-3">
                   <a href="index.php?p=buku-input" class="btn btn-sm btn-outline-success" aria-current="page"><i class="bi bi-pencil"></i> add</a>
                </li>
-               <!-- <li class="nav-item mx-3">
-                     <a target="_blank" href="pages/cetak.php" class="btn btn-tertiary">
-                        <i class="bi bi-printer"> Print</i>
-                     </a>
-                  </li> -->
             </ul>
             <form action="" class="d-flex mx-3" method="post">
                <input type="text" class="form-control form-control-sm me-2" name="pencarian" autocomplete="off" placeholder="Search...">
@@ -38,64 +33,65 @@
                <th scope="col">Opsi</th>
             </tr>
          </thead>
+         <tbody>
 
-
-         <?php
-         $batas = 10;
-         extract($_GET);
-         if (empty($hal)) {
-            $posisi = 0;
-            $hal = 1;
-            $nomor = 1;
-         } else {
-            $posisi = ($hal - 1) * $batas;
-            $nomor = $posisi + 1;
-         }
-         if ($_SERVER['REQUEST_METHOD'] == "POST") {
-            $pencarian = trim(mysqli_real_escape_string($db, $_POST['pencarian']));
-            if ($pencarian != "") {
-               $sql = "SELECT * FROM book WHERE book_title LIKE '%$pencarian%'
+            <?php
+            $batas = 10;
+            extract($_GET);
+            if (empty($hal)) {
+               $posisi = 0;
+               $hal = 1;
+               $nomor = 1;
+            } else {
+               $posisi = ($hal - 1) * $batas;
+               $nomor = $posisi + 1;
+            }
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+               $pencarian = trim(mysqli_real_escape_string($db, $_POST['pencarian']));
+               if ($pencarian != "") {
+                  $sql = "SELECT * FROM book WHERE book_title LIKE '%$pencarian%'
 						OR author LIKE '%$pencarian%'
 						OR category LIKE '%$pencarian%'
 						OR publisher_name LIKE '%$pencarian%'";
 
-               $query = $sql;
-               $queryJml = $sql;
+                  $query = $sql;
+                  $queryJml = $sql;
+               } else {
+                  $query = "SELECT * FROM book LIMIT $posisi, $batas";
+                  $queryJml = "SELECT * FROM book";
+                  $no = $posisi * 1;
+               }
             } else {
                $query = "SELECT * FROM book LIMIT $posisi, $batas";
                $queryJml = "SELECT * FROM book";
                $no = $posisi * 1;
             }
-         } else {
-            $query = "SELECT * FROM book LIMIT $posisi, $batas";
-            $queryJml = "SELECT * FROM book";
-            $no = $posisi * 1;
-         }
 
-         //$sql="SELECT * FROM book ORDER BY idanggota DESC";
-         $q = mysqli_query($db, $query);
-         if (mysqli_num_rows($q) > 0) {
-            while ($r = mysqli_fetch_array($q)) {
-         ?>
-               <tr>
-                  <td><?php echo $nomor; ?></td>
-                  <td><?php echo $r['book_id']; ?></td>
-                  <td><?php echo $r['book_title']; ?></td>
-                  <td><?php echo $r['category']; ?></td>
-                  <td><?php echo $r['author']; ?></td>
-                  <td><?php echo $r['book_copies']; ?></td>
-                  <td><?php echo $r['publisher_name']; ?></td>
-                  <td><?php echo $r['is_borrowed'] == 1 ? "Dipinjam" : "Tersedia"; ?></td>
-                  <td>
-                     <a class="btn btn-sm btn-warning" href="index.php?p=buku-edit&id=<?php echo $r['book_id']; ?>"><i class="bi bi-pencil"></i></a>
-                     <a class="btn btn-sm btn-danger" href="proses/buku-hapus.php?id=<?php echo $r['book_id']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
-                  </td>
-               </tr>
-         <?php $nomor++;
-            }
-         } else {
-            echo "<tr><td colspan=6>Data Tidak Ditemukan</td></tr>";
-         } ?>
+            //$sql="SELECT * FROM book ORDER BY idanggota DESC";
+            $q = mysqli_query($db, $query);
+            if (mysqli_num_rows($q) > 0) {
+               while ($r = mysqli_fetch_array($q)) {
+            ?>
+                  <tr>
+                     <td><?php echo $nomor; ?></td>
+                     <td><?php echo $r['book_id']; ?></td>
+                     <td><?php echo $r['book_title']; ?></td>
+                     <td><?php echo $r['category']; ?></td>
+                     <td><?php echo $r['author']; ?></td>
+                     <td><?php echo $r['book_copies']; ?></td>
+                     <td><?php echo $r['publisher_name']; ?></td>
+                     <td><?php echo $r['is_borrowed'] == 1 ? "Dipinjam" : "Tersedia"; ?></td>
+                     <td>
+                        <a class="btn btn-sm btn-warning" href="index.php?p=buku-edit&id=<?php echo $r['book_id']; ?>"><i class="bi bi-pencil"></i></a>
+                        <a class="btn btn-sm btn-danger" href="proses/buku-hapus.php?id=<?php echo $r['book_id']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
+                     </td>
+                  </tr>
+            <?php $nomor++;
+               }
+            } else {
+               echo "<tr><td colspan=6>Data Tidak Ditemukan</td></tr>";
+            } ?>
+         </tbody>
       </table>
    </div>
    <?php
