@@ -9,17 +9,22 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $escaped_user = mysqli_real_escape_string($db, $username);
-    $escaped_pass = mysqli_real_escape_string($db, $password);
+    // Persiapkan prepared statement untuk mengambil data berdasarkan username
+    $stmt = $db->prepare("SELECT * FROM admins WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
 
-    $result = mysqli_query($db, "SELECT * FROM admins WHERE username = '$escaped_user'");
+    // Ambil hasil query
+    $result = $stmt->get_result();
 
     // cek username
-    if (mysqli_num_rows($result) === 1) {
+    if ($result->num_rows === 1) {
 
-        // cek password 
-        $row = mysqli_fetch_assoc($result);
-        if (password_verify($escaped_pass, $row["password"])) {
+        // Ambil data hasil query
+        $row = $result->fetch_assoc();
+
+        // cek password
+        if (password_verify($password, $row["password"])) {
 
             // set session
             $_SESSION["auth"] = true;
@@ -30,13 +35,13 @@ if (isset($_POST["login"])) {
             echo "<meta http-equiv='refresh' content='0; url=../index.php'>";
             exit;
         } else {
-            echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
             echo "<script>alert('Invalid Login');</script>";
+            echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
         }
     } else {
-        echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
         echo "<script>alert('Invalid Login');</script>";
+        echo "<meta http-equiv='refresh' content='0;url=../login.php'>";
     }
 
-    $error = true;
+    $stmt->close();
 }

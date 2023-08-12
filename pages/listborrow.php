@@ -16,7 +16,7 @@
         </tr>
         <?php
         include "koneksi.php";
-        $dml = "SELECT a.idanggota, a.nama, a.email, b.borrow_id, b.date_borrow, b.due_date 
+        $dml = "SELECT a.nama, a.email, b.borrow_id, b.date_borrow, b.due_date 
         FROM tbanggota AS a
         INNER JOIN borrow AS b ON b.idanggota = a.idanggota";
         $qry = mysqli_query($db, $dml);
@@ -30,9 +30,9 @@
                     <center><?php echo $no . "."; ?></center>
                 </td>
                 <td>
-                    <center><?php echo $row['nama'] ?></center>
+                    <center><?php echo strip_tags($row['nama']); ?></center>
                 </td>
-                <td><?php echo $row['email']; ?></td>
+                <td><?php echo strip_tags($row['email']); ?></td>
                 <td><?php echo $row['date_borrow']; ?></td>
                 <td><?php echo $row['due_date']; ?></td>
                 <td>

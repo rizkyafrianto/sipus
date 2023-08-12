@@ -1,3 +1,5 @@
+Kunjungi (publikperpus.free.nf)
+
 Proyek Perpustakaan menggunakan PHP Native
 Selamat datang di proyek perpustakaan menggunakan PHP! Proyek ini adalah sebuah aplikasi perpustakaan sederhana yang dibangun menggunakan bahasa pemrograman PHP. Aplikasi ini bertujuan untuk membantu pengelolaan data buku, anggota, dan peminjaman di sebuah perpustakaan.
 
@@ -17,7 +19,9 @@ Peminjaman Buku:
 
 Pengembalian Buku:
 1. Proses pengembalian buku.
+---------------------------------------------------------------------------------------------------------------
+Projeck ini masih terus dikembangkan agar menjadi robust web projek dan scalable
 
-laporan transaksi buku
-
-Saat ini saya masih ingin memperbaiki dan menambah fitur lain dan juga terdapat error pada saat menghapus list transaksi buku
+NOTE: 
+- Jika ingin berkunjung, cek info.txt untuk pengaksesan akun 
+- Silahkan laporkan apabila ada error pada fitur fitur agar langsung dapat dilakukan fixing bug

@@ -3,7 +3,6 @@ if (isset($_POST['submit'])) {
    $idanggota = $_POST['idanggota'];
    $duedate = $_POST['duedate'];
    $listbookid = $_POST['selector'];
-   $book_id = $_POST['book_id'];
 
    // Include the database connection
    include '../koneksi.php';
@@ -18,7 +17,7 @@ if (isset($_POST['submit'])) {
    if ($update_query) {
       // Query to insert borrow data into the borrow table
       $insert_borrow_query = mysqli_query($db, "INSERT INTO borrow (idanggota, date_borrow, due_date, status, book_id)
-                                                VALUES ('$idanggota', NOW(), '$duedate', 1, '$book_id')");
+                                                VALUES ('$idanggota', NOW(), '$duedate', 1, '$book_ids')");
 
       if ($insert_borrow_query) {
          // Get the newly inserted borrow_id
