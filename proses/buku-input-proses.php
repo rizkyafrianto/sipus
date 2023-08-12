@@ -10,16 +10,21 @@ if (isset($_POST['simpan'])) {
    $book_copies = $_POST['book_copies'];
    $publisher_name = $_POST['publisher_name'];
 
-   // Query untuk insert data ke table book
-   $sql = "INSERT INTO book (book_id, book_title, category, author, book_copies, publisher_name)
-            VALUES ('$book_id', '$book_title', '$category', '$author', '$book_copies', '$publisher_name')";
+   // prepared statement
+   $stmt = $db->prepare("INSERT INTO book (book_id, book_title, category, author, book_copies, publisher_name) VALUES (?, ?, ?, ?, ?, ?)");
 
-   // Jalankan query
-   $result = mysqli_query($db, $sql);
+   // Bind parameters
+   $stmt->bind_param("ssssis", $book_id, $book_title, $category, $author, $book_copies, $publisher_name);
 
-   if ($result) {
+   // Eksekusi query
+   if ($stmt->execute()) {
       echo "<script>alert('data barhasil ditambahkan');</script>";
       echo "<meta http-equiv='refresh' content='0;url=../index.php?p=buku'>";
-      exit;
+   } else {
+      echo "Error: " . $stmt->error;
    }
+
+   // Tutup statement dan koneksi
+   $stmt->close();
+   $db->close();
 }

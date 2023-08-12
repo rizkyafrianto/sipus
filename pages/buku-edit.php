@@ -1,7 +1,7 @@
 <?php
 $book_id = $_GET['id'];
-$q = mysqli_query($db, "SELECT * FROM book WHERE book_id='$book_id'");
-$row = mysqli_fetch_array($q);
+$data = mysqli_query($db, "SELECT * FROM book WHERE book_id='$book_id'");
+$row = mysqli_fetch_array($data);
 ?>
 <div id="label-page">
    <h3>Edit Buku</h3>
@@ -15,23 +15,23 @@ $row = mysqli_fetch_array($q);
          </tr>
          <tr>
             <td class="label-formulir">Judul Buku</td>
-            <td class="isian-formulir"><input type="text" name="book_title" class="isian-formulir isian-formulir-border" value="<?php echo $row['book_title']; ?>"></td>
+            <td class="isian-formulir"><input type="text" name="book_title" class="isian-formulir isian-formulir-border" required value="<?php echo $row['book_title']; ?>"></td>
          </tr>
          <tr>
             <td class="label-formulir">Kategori</td>
-            <td class="isian-formulir"><input type="text" name="category" class="isian-formulir isian-formulir-border" value="<?php echo $row['category']; ?>"></td>
+            <td class="isian-formulir"><input type="text" name="category" class="isian-formulir isian-formulir-border" required value="<?php echo $row['category']; ?>"></td>
          </tr>
          <tr>
             <td class="label-formulir">Penulis</td>
-            <td class="isian-formulir"><input type="text" name="author" class="isian-formulir isian-formulir-border" value="<?php echo $row['author']; ?>"></td>
+            <td class="isian-formulir"><input type="text" name="author" class="isian-formulir isian-formulir-border" required value="<?php echo $row['author']; ?>"></td>
          </tr>
          <tr>
             <td class="label-formulir">Book Copies</td>
-            <td class="isian-formulir"><input type="text" name="book_copies" class="isian-formulir isian-formulir-border" value="<?php echo $row['book_copies']; ?>"></td>
+            <td class="isian-formulir"><input type="text" name="book_copies" class="isian-formulir isian-formulir-border" required value="<?php echo $row['book_copies']; ?>"></td>
          </tr>
          <tr>
             <td class="label-formulir">Publisher</td>
-            <td class="isian-formulir"><input type="text" name="publisher_name" class="isian-formulir isian-formulir-border" value="<?php echo $row['publisher_name']; ?>"></td>
+            <td class="isian-formulir"><input type="text" name="publisher_name" class="isian-formulir isian-formulir-border" required value="<?php echo $row['publisher_name']; ?>"></td>
          </tr>
          <tr>
             <td class="label-formulir"></td>

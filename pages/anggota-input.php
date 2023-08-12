@@ -7,19 +7,19 @@
       <table id="tabel-input">
          <tr>
             <td class="label-formulir">FOTO</td>
-            <td class="isian-formulir"><input type="file" name="foto" class="isian-formulir isian-formulir-border"></td>
+            <td class="isian-formulir"><input type="file" name="foto" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">ID Anggota</td>
-            <td class="isian-formulir"><input type="text" name="idanggota" class="isian-formulir isian-formulir-border"></td>
+            <td class="isian-formulir"><input type="text" name="idanggota" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">Nama</td>
-            <td class="isian-formulir"><input type="text" name="nama" class="isian-formulir isian-formulir-border"></td>
+            <td class="isian-formulir"><input type="text" name="nama" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">Email</td>
-            <td class="isian-formulir"><input type="email" name="email" class="isian-formulir isian-formulir-border"></td>
+            <td class="isian-formulir"><input type="email" name="email" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">Jenis Kelamin</td>
@@ -31,7 +31,7 @@
          </tr>
          <tr>
             <td class="label-formulir">Alamat</td>
-            <td class="isian-formulir"><textarea rows="2" cols="40" name="alamat" class="isian-formulir isian-formulir-border"></textarea></td>
+            <td class="isian-formulir"><textarea rows="2" cols="40" name="alamat" class="isian-formulir isian-formulir-border" required></textarea></td>
          </tr>
          <tr>
             <td class="label-formulir"></td>

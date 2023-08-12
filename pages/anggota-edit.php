@@ -1,11 +1,11 @@
 <?php
 $idanggota = $_GET['id'];
-$q_tampil_anggota = mysqli_query($db, "SELECT * FROM tbanggota WHERE idanggota='$idanggota'");
-$r_tampil_anggota = mysqli_fetch_array($q_tampil_anggota);
-if (empty($r_tampil_anggota['foto']) or ($r_tampil_anggota['foto'] == '-'))
+$data = mysqli_query($db, "SELECT * FROM tbanggota WHERE idanggota='$idanggota'");
+$row = mysqli_fetch_array($data);
+if (empty($row['foto']) or ($row['foto'] == '-'))
    $foto = "admin-no-photo.jpg";
 else
-   $foto = $r_tampil_anggota['foto'];
+   $foto = $row['foto'];
 ?>
 <div id="label-page">
    <h3>Edit Data Anggota</h3>
@@ -18,26 +18,26 @@ else
             <td class="isian-formulir">
                <img src="images/<?php echo $foto; ?>" width=70px height=75px>
                <input type="file" name="foto" class="isian-formulir isian-formulir-border">
-               <input type="hidden" name="foto_awal" value="<?php echo $r_tampil_anggota['foto']; ?>">
+               <input type="hidden" name="foto_awal" value="<?php echo $row['foto']; ?>">
             </td>
          </tr>
          <tr>
             <td class="label-formulir">ID Anggota</td>
-            <td class="isian-formulir"><input type="text" name="idanggota" value="<?php echo $r_tampil_anggota['idanggota']; ?>" readonly="readonly" class="isian-formulir isian-formulir-border warna-formulir-disabled"></td>
+            <td class="isian-formulir"><input type="text" name="idanggota" value="<?php echo $row['idanggota']; ?>" readonly="readonly" class="isian-formulir isian-formulir-border warna-formulir-disabled"></td>
          </tr>
          <tr>
             <td class="label-formulir">Nama</td>
-            <td class="isian-formulir"><input type="text" name="nama" value="<?php echo $r_tampil_anggota['nama']; ?>" class="isian-formulir isian-formulir-border"></td>
+            <td class="isian-formulir"><input type="text" name="nama" value="<?php echo $row['nama']; ?>" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">Email</td>
-            <td class="isian-formulir"><input type="email" name="email" value="<?php echo $r_tampil_anggota['email']; ?>" class="isian-formulir isian-formulir-border"></td>
+            <td class="isian-formulir"><input type="email" name="email" value="<?php echo $row['email']; ?>" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class='label-formulir'>Jenis Kelamin</td>
             <td class='isian-formulir'>
                <?php
-               $jenis_kelamin = $r_tampil_anggota['jeniskelamin'];
+               $jenis_kelamin = $row['jeniskelamin'];
                $is_pria = $jenis_kelamin === "Pria";
                $is_wanita = $jenis_kelamin === "Wanita";
 
@@ -48,7 +48,7 @@ else
          </tr>
          <tr>
             <td class="label-formulir">Alamat</td>
-            <td class="isian-formulir"><textarea rows="2" cols="40" name="alamat" class="isian-formulir isian-formulir-border"><?php echo $r_tampil_anggota['alamat']; ?></textarea></td>
+            <td class="isian-formulir"><textarea rows="2" cols="40" name="alamat" class="isian-formulir isian-formulir-border" required><?php echo $row['alamat']; ?></textarea></td>
          </tr>
          <tr>
             <td class="label-formulir"></td>

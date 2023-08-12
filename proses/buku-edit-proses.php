@@ -9,12 +9,15 @@ $book_copies = $_POST['book_copies'];
 $publisher_name = $_POST['publisher_name'];
 
 if (isset($_POST['simpan'])) {
+   $stmt = $db->prepare("UPDATE book SET book_title=?, category=?, author=?, book_copies=?, publisher_name=? WHERE book_id=?");
+   $stmt->bind_param("ssssss", $book_title, $category, $author, $book_copies, $publisher_name, $book_id);
 
-   mysqli_query(
-      $db,
-      "UPDATE book
-		SET book_title='$book_title', category='$category',  author='$author',book_copies='$book_copies',  publisher_name='$publisher_name' WHERE book_id='$book_id'"
-   );
-   echo "<script>alert('data buku barhasil diupdate');</script>";
-   echo "<meta http-equiv='refresh' content='0;url=../index.php?p=buku'>";
+   if ($stmt->execute()) {
+      echo "<script>alert('Data buku berhasil diupdate');</script>";
+      echo "<meta http-equiv='refresh' content='0;url=../index.php?p=buku'>";
+   } else {
+      echo "<script>alert('Terjadi kesalahan dalam mengupdate data buku');</script>";
+   }
+
+   $stmt->close();
 }

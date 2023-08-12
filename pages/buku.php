@@ -68,22 +68,22 @@
             }
 
             //$sql="SELECT * FROM book ORDER BY idanggota DESC";
-            $q = mysqli_query($db, $query);
-            if (mysqli_num_rows($q) > 0) {
-               while ($r = mysqli_fetch_array($q)) {
+            $data = mysqli_query($db, $query);
+            if (mysqli_num_rows($data) > 0) {
+               while ($row = mysqli_fetch_array($data)) {
             ?>
                   <tr>
                      <td><?php echo $nomor; ?></td>
-                     <td><?php echo $r['book_id']; ?></td>
-                     <td><?php echo $r['book_title']; ?></td>
-                     <td><?php echo $r['category']; ?></td>
-                     <td><?php echo $r['author']; ?></td>
-                     <td><?php echo $r['book_copies']; ?></td>
-                     <td><?php echo $r['publisher_name']; ?></td>
-                     <td><?php echo $r['is_borrowed'] == 1 ? "Dipinjam" : "Tersedia"; ?></td>
+                     <td><?php echo strip_tags($row['book_id']); ?></td>
+                     <td><?php echo strip_tags($row['book_title']); ?></td>
+                     <td><?php echo strip_tags($row['category']); ?></td>
+                     <td><?php echo strip_tags($row['author']); ?></td>
+                     <td><?php echo strip_tags($row['book_copies']); ?></td>
+                     <td><?php echo strip_tags($row['publisher_name']); ?></td>
+                     <td><?php echo $row['is_borrowed'] == 1 ? "Dipinjam" : "Tersedia"; ?></td>
                      <td>
-                        <a class="btn btn-sm btn-warning" href="index.php?p=buku-edit&id=<?php echo $r['book_id']; ?>"><i class="bi bi-pencil"></i></a>
-                        <a class="btn btn-sm btn-danger" href="proses/buku-hapus.php?id=<?php echo $r['book_id']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
+                        <a class="btn btn-sm btn-warning" href="index.php?p=buku-edit&id=<?php echo $row['book_id']; ?>"><i class="bi bi-pencil"></i></a>
+                        <a class="btn btn-sm btn-danger" href="proses/buku-hapus.php?id=<?php echo $row['book_id']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
                      </td>
                   </tr>
             <?php $nomor++;
