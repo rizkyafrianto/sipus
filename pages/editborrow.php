@@ -44,13 +44,13 @@
                                     <th>Opsi</th>
                                 </tr>
                                 <?php
-                                $dml = "SELECT * FROM borrowdetails 
-											INNER JOIN book ON borrowdetails.book_id = book.book_id where borrow_id='$idx'";
+                                $dml = "SELECT * FROM borrow 
+											INNER JOIN book ON borrow.book_id = book.book_id where borrow_id='$idx'";
                                 $qry = mysqli_query($db, $dml);
                                 $no = 1;
 
                                 while ($row = mysqli_fetch_array($qry)) {
-                                    $id = $row['borrowdetail_id'];
+                                    $id = $row['borrow_id'];
                                 ?>
                                     <tr>
                                         <td>
@@ -66,7 +66,7 @@
                                         <td><?php echo $row['is_borrowed'] == 1 ? "Dipinjam" : "Dikembalikan"; ?></td>
                                         <td>
                                             <center>
-                                                <a href="proses/book_borrow_back.php?borrow_id=<?php echo $row['borrow_id']; ?>" class="tombol">Kembalikan</a>
+                                                <a href="proses/book_borrow_back.php?book_id=<?php echo $row['book_id']; ?>" class="tombol">Kembalikan</a>
                                             </center>
                                         </td>
                                     </tr>

@@ -15,16 +15,22 @@ if (isset($_POST['submit'])) {
    $update_query = mysqli_query($db, "UPDATE book SET is_borrowed = 1 WHERE book_id IN ($book_ids)");
 
    if ($update_query) {
-      // Query to insert borrow data into the borrow table
-      $insert_borrow_query = mysqli_query($db, "INSERT INTO borrow (idanggota, date_borrow, due_date, status, book_id)
-                                                VALUES ('$idanggota', NOW(), '$duedate', 1, '$book_ids')");
+      foreach ($listbookid as $bookid) {
+         // Query to insert borrow data into the borrow table
+         $insert_borrow_query = mysqli_query($db, "INSERT INTO borrow (idanggota, date_borrow, due_date, status, book_id)
+                                                VALUES ('$idanggota', NOW(), '$duedate', 1, '$bookid')");
+      }
 
       if ($insert_borrow_query) {
          // Get the newly inserted borrow_id
-         $borrow_id = mysqli_insert_id($db);
 
          // Insert borrowdetails for each book_id
          foreach ($listbookid as $bookid) {
+            // Query to get borrow_id from borrow table
+            $get_borrow_id_query = mysqli_query($db, "SELECT borrow_id FROM borrow WHERE book_id = '$bookid'");
+            $borrow_id_row = mysqli_fetch_assoc($get_borrow_id_query);
+            $borrow_id = $borrow_id_row['borrow_id'];
+
             $dml2 = "INSERT INTO borrowdetails (book_id, borrow_id) VALUES ('$bookid', '$borrow_id')";
             $qry2 = mysqli_query($db, $dml2);
 
