@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-include '../koneksi.php';
+require_once '../koneksi.php';
 
 if (isset($_GET['borrow_id'])) {
    $borrow_id = $_GET['borrow_id'];
@@ -8,14 +8,18 @@ if (isset($_GET['borrow_id'])) {
    // Start a transaction to ensure data consistency
    mysqli_autocommit($db, false);
 
-   // Query to delete the borrow details associated with the borrow record
-   $delete_details_query = mysqli_query($db, "DELETE FROM borrowdetails WHERE borrow_id = '$borrow_id'");
+   // Use prepared statements to avoid SQL injection
+   $delete_details_query = mysqli_prepare($db, "DELETE FROM borrowdetails WHERE borrow_id = ?");
+   mysqli_stmt_bind_param($delete_details_query, "s", $borrow_id);
+   $delete_details_result = mysqli_stmt_execute($delete_details_query);
 
-   if ($delete_details_query) {
+   if ($delete_details_result) {
       // Query to delete the borrow record from the borrow table
-      $delete_borrow_query = mysqli_query($db, "DELETE FROM borrow WHERE borrow_id = '$borrow_id'");
+      $delete_borrow_query = mysqli_prepare($db, "DELETE FROM borrow WHERE borrow_id = ?");
+      mysqli_stmt_bind_param($delete_borrow_query, "s", $borrow_id);
+      $delete_borrow_result = mysqli_stmt_execute($delete_borrow_query);
 
-      if ($delete_borrow_query) {
+      if ($delete_borrow_result) {
          // Commit the transaction
          mysqli_commit($db);
 
