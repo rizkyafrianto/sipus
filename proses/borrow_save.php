@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
    $listbookid = $_POST['selector'];
 
    // Include the database connection
-   require_once '../koneksi.php';
+   require_once '../config.php';
 
    // Start a transaction to ensure data consistency
    mysqli_autocommit($db, false);

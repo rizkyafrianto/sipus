@@ -1,5 +1,5 @@
 <?php
-include "../koneksi.php";
+include "../config.php";
 
 $idanggota = $_GET['id'];
 $q_tampil_anggota = mysqli_query($db, "SELECT * FROM tbanggota WHERE idanggota='$idanggota'");

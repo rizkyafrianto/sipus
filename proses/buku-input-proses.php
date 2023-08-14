@@ -1,5 +1,5 @@
 <?php
-require_once '../koneksi.php';
+require_once '../config.php';
 
 if (isset($_POST['simpan'])) {
    // commit transaction, for concistency data

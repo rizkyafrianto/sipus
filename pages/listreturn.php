@@ -14,7 +14,7 @@
          <th>Action</th>
       </tr>
       <?php
-      include __DIR__ . '/../koneksi.php';
+      include __DIR__ . '/../config.php';
 
       // Query untuk mendapatkan data buku yang sudah dikembalikan
       $query = "SELECT a.idanggota, a.nama, a.email, b.borrow_id, b.date_borrow, b.due_date, b.date_return, c.book_id, c.book_title

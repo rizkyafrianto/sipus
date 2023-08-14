@@ -1,6 +1,6 @@
 <?php
 
-include 'koneksi.php';
+include 'config.php';
 
 // start function registration
 function registrasi($data)

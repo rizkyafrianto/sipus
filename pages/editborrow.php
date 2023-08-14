@@ -1,5 +1,5 @@
 <?php
-require_once "koneksi.php";
+require_once "config.php";
 
 // Ambil parameter id dari GET
 $idx = isset($_GET['id']) ? $_GET['id'] : "";

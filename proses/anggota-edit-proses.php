@@ -1,5 +1,5 @@
 <?php
-require_once '../koneksi.php';
+require_once '../config.php';
 
 // start stransaction
 mysqli_autocommit($db, false);

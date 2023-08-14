@@ -1,12 +1,12 @@
 <?php
-require_once '../koneksi.php';
+require_once '../config.php';
 
 mysqli_autocommit($db, false);
 
 // Validate and sanitize input ID
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
    $book_id = intval($_GET['id']);
-   
+
    // Check if the book is borrowed
    $stmt_check = $db->prepare("SELECT is_borrowed FROM book WHERE book_id = ?");
    $stmt_check->bind_param('i', $book_id);

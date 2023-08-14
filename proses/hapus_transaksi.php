@@ -1,6 +1,6 @@
 <?php
 // Include the database connection
-require_once '../koneksi.php';
+require_once '../config.php';
 
 if (isset($_GET['borrow_id'])) {
    $borrow_id = $_GET['borrow_id'];

@@ -1,5 +1,5 @@
                 <?php
-                include "koneksi.php";
+                include "config.php";
                 $dml = "SELECT * FROM tbanggota ORDER BY nama ASC";
                 $qry = mysqli_query($db, $dml);
                 ?>

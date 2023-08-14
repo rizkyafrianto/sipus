@@ -1,5 +1,5 @@
 <?php
-include 'koneksi.php';
+include 'config.php';
 $tgl = date('Y-m-d');
 session_start();
 if (isset($_SESSION['auth'])) {

@@ -1,5 +1,5 @@
 <?php
-require_once "../koneksi.php";
+require_once "../config.php";
 
 if (isset($_GET['book_id'])) {
    $book_id = $_GET['book_id'];

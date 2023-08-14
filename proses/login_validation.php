@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "../koneksi.php";
+include "../config.php";
 
 // set login logic
 if (isset($_POST["login"])) {

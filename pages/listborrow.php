@@ -16,7 +16,7 @@
             <th id="label-opsi">Action</th>
         </tr>
         <?php
-        require_once "koneksi.php";
+        require_once "config.php";
         $dml = "SELECT a.nama, a.email, b.borrow_id, b.date_borrow, b.due_date, c.book_title
         FROM tbanggota AS a
         INNER JOIN borrow AS b ON b.idanggota = a.idanggota 
