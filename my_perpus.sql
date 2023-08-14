@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2023 at 10:32 AM
+-- Generation Time: Aug 14, 2023 at 05:40 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -64,8 +64,8 @@ CREATE TABLE `book` (
 
 INSERT INTO `book` (`book_id`, `book_title`, `category`, `author`, `book_copies`, `publisher_name`, `is_borrowed`) VALUES
 (110, 'Harry', 'Fantasy', 'JK', 1000, 'Sunrise', 0),
-(123, 'Hujan', 'Fantasy', 'Tere Liye', 100, 'Gramedia', 0),
-(535, 'Meteor', 'Fantasy', 'Tere Liye', 100, 'Gramedia', 0);
+(123, 'Hujan', 'Fantasy', 'Tere Liye', 100, 'Gramedia', 1),
+(535, 'Meteor', 'Fantasy', 'Tere Liye', 100, 'Gramedia', 1);
 
 -- --------------------------------------------------------
 
@@ -80,8 +80,16 @@ CREATE TABLE `borrow` (
   `due_date` date DEFAULT NULL,
   `date_return` date DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
-  `book_id` int(11) NOT NULL
+  `book_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `borrow`
+--
+
+INSERT INTO `borrow` (`borrow_id`, `idanggota`, `date_borrow`, `due_date`, `date_return`, `status`, `book_id`) VALUES
+(172, 2342, '2023-08-13', '2023-08-23', NULL, 1, 123),
+(173, 2342, '2023-08-13', '2023-08-23', NULL, 1, 535);
 
 -- --------------------------------------------------------
 
@@ -95,6 +103,14 @@ CREATE TABLE `borrowdetails` (
   `book_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `borrowdetails`
+--
+
+INSERT INTO `borrowdetails` (`borrowdetail_id`, `borrow_id`, `book_id`) VALUES
+(214, 172, 123),
+(215, 173, 535);
+
 -- --------------------------------------------------------
 
 --
@@ -107,7 +123,6 @@ CREATE TABLE `tbanggota` (
   `email` varchar(50) NOT NULL,
   `jeniskelamin` varchar(10) NOT NULL,
   `alamat` varchar(40) NOT NULL,
-  `status` varchar(20) NOT NULL,
   `foto` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -115,10 +130,10 @@ CREATE TABLE `tbanggota` (
 -- Dumping data for table `tbanggota`
 --
 
-INSERT INTO `tbanggota` (`idanggota`, `nama`, `email`, `jeniskelamin`, `alamat`, `status`, `foto`) VALUES
-(2342, 'hanni', 'rizky@gmail.com', 'Wanita', 'Benteng', 'Tidak Meminjam', '2342.jpg'),
-(21102, 'minji', 'minji@gmail.com', 'Wanita', 'bogor', 'Tidak Meminjam', '21102.jpeg'),
-(21103, 'Hyerin', 'rizky@gmail.com', 'Wanita', 'Benteng', 'Tidak Meminjam', '21103.jpg');
+INSERT INTO `tbanggota` (`idanggota`, `nama`, `email`, `jeniskelamin`, `alamat`, `foto`) VALUES
+(2342, 'hanni', 'rizky@gmail.com', 'Wanita', 'Benteng', '2342.jpg'),
+(21102, 'minji', 'minji@gmail.com', 'Wanita', 'bogor', '21102.jpeg'),
+(21103, 'Hyerin', 'rizky@gmail.com', 'Wanita', 'Benteng', '21103.jpg');
 
 --
 -- Indexes for dumped tables
@@ -171,13 +186,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `borrow`
 --
 ALTER TABLE `borrow`
-  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `borrow_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT for table `borrowdetails`
 --
 ALTER TABLE `borrowdetails`
-  MODIFY `borrowdetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `borrowdetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=217;
 
 --
 -- Constraints for dumped tables
