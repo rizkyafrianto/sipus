@@ -1,7 +1,21 @@
 <?php
-$idanggota = $_GET['id'];
-$data = mysqli_query($db, "SELECT * FROM tbanggota WHERE idanggota='$idanggota'");
-$row = mysqli_fetch_array($data);
+// get id do sanitation
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+   $idanggota = intval($_GET['id']);
+
+   // Prepare statement for query
+   $data = $db->prepare("SELECT * FROM tbanggota WHERE idanggota=?");
+   $data->bind_param('i', $idanggota);
+   $data->execute();
+
+   // Get result set
+   $result = $data->get_result();
+
+   // Fetch the row from the result set
+   $row = $result->fetch_assoc();
+}
+
+// checked foto?
 if (empty($row['foto']) or ($row['foto'] == '-'))
    $foto = "admin-no-photo.jpg";
 else
@@ -16,22 +30,22 @@ else
          <tr>
             <td class="label-formulir">FOTO</td>
             <td class="isian-formulir">
-               <img src="images/<?php echo $foto; ?>" width=70px height=75px>
+               <img class="mb-2" style='border:1px solid black;' src="images/<?php echo $foto; ?>" width=70px height=75px>
                <input type="file" name="foto" class="isian-formulir isian-formulir-border">
-               <input type="hidden" name="foto_awal" value="<?php echo $row['foto']; ?>">
+               <input type="hidden" name="foto_awal" value="<?php echo htmlspecialchars($row['foto']); ?>">
             </td>
          </tr>
          <tr>
             <td class="label-formulir">ID Anggota</td>
-            <td class="isian-formulir"><input type="text" name="idanggota" value="<?php echo $row['idanggota']; ?>" readonly="readonly" class="isian-formulir isian-formulir-border warna-formulir-disabled"></td>
+            <td class="isian-formulir"><input type="text" name="idanggota" value="<?php echo htmlspecialchars($row['idanggota']); ?>" readonly="readonly" class="isian-formulir isian-formulir-border warna-formulir-disabled"></td>
          </tr>
          <tr>
             <td class="label-formulir">Nama</td>
-            <td class="isian-formulir"><input type="text" name="nama" value="<?php echo $row['nama']; ?>" class="isian-formulir isian-formulir-border" required></td>
+            <td class="isian-formulir"><input type="text" name="nama" value="<?php echo htmlspecialchars($row['nama']); ?>" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">Email</td>
-            <td class="isian-formulir"><input type="email" name="email" value="<?php echo $row['email']; ?>" class="isian-formulir isian-formulir-border" required></td>
+            <td class="isian-formulir"><input type="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class='label-formulir'>Jenis Kelamin</td>

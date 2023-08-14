@@ -1,12 +1,18 @@
 <?php
-include '../koneksi.php';
+require_once '../koneksi.php';
 
-// validation idanggota
+// start transaction
+mysqli_autocommit($db, false);
+
+// Validation idanggota
 $idanggota = isset($_POST['idanggota']) ? mysqli_real_escape_string($db, $_POST['idanggota']) : '';
 
-// Query untuk mencari ID anggota yang sudah terdaftar
-$query = "SELECT * FROM tbanggota WHERE idanggota = '$idanggota'";
-$result = mysqli_query($db, $query);
+// Query to find if ID anggota is already registered
+$query = "SELECT * FROM tbanggota WHERE idanggota = ?";
+$stmt = $db->prepare($query);
+$stmt->bind_param("s", $idanggota);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if (mysqli_num_rows($result) > 0) {
 	echo "<script>alert('id sudah ada');</script>";
@@ -14,7 +20,7 @@ if (mysqli_num_rows($result) > 0) {
 	exit;
 } else {
 
-	// prevent sql inject
+	// Sanitize inputs
 	$nama = isset($_POST['nama']) ? mysqli_real_escape_string($db, $_POST['nama']) : '';
 	$email = isset($_POST['email']) ? mysqli_real_escape_string($db, $_POST['email']) : '';
 	$jenis_kelamin = isset($_POST['jenis_kelamin']) ? mysqli_real_escape_string($db, $_POST['jenis_kelamin']) : '';
@@ -23,26 +29,34 @@ if (mysqli_num_rows($result) > 0) {
 
 	if (isset($_POST['simpan'])) {
 		extract($_POST);
-		$nama_file   = $_FILES['foto']['name'];
+		$nama_file = $_FILES['foto']['name'];
 		if (!empty($nama_file)) {
-			// Baca lokasi file sementar dan nama file dari form (fupload)
+			// Read temporary file location and name from form (fupload)
 			$lokasi_file = $_FILES['foto']['tmp_name'];
 			$tipe_file = pathinfo($nama_file, PATHINFO_EXTENSION);
 			$file_foto = $idanggota . "." . $tipe_file;
 
-			// Tentukan folder untuk menyimpan file
+			// Specify folder to store the file
 			$folder = "../images/$file_foto";
-			// Apabila file berhasil di upload
+			// Move the uploaded file if successful
 			move_uploaded_file($lokasi_file, "$folder");
 		} else
 			$file_foto = "-";
 
-		$stmt = $db->prepare("INSERT INTO tbanggota (idanggota, nama, email, jeniskelamin, alamat, foto) VALUES (?, ?, ?, ?, ?, ?)");
-		$stmt->bind_param("ssssss", $idanggota, $nama, $email, $jenis_kelamin, $alamat, $file_foto);
-		$stmt->execute();
-		$stmt->close();
+		// Insert data using prepared statement
+		$insert_query = "INSERT INTO tbanggota (idanggota, nama, email, jeniskelamin, alamat, foto) VALUES (?, ?, ?, ?, ?, ?)";
+		$insert_stmt = $db->prepare($insert_query);
+		$insert_stmt->bind_param("ssssss", $idanggota, $nama, $email, $jenis_kelamin, $alamat, $file_foto);
+		if ($insert_stmt->execute()) {
 
-		echo "<script>alert('data barhasil ditambahkan');</script>";
-		echo "<meta http-equiv='refresh' content='0;url=../index.php?p=anggota'>";
+			// commit transaction
+			mysqli_commit($db);
+
+			echo "<script>alert('data berhasil ditambahkan');</script>";
+			echo "<meta http-equiv='refresh' content='0;url=../index.php?p=anggota'>";
+		} else {
+			echo "Error: " . $insert_stmt->error;
+		}
+		$insert_stmt->close();
 	}
 }

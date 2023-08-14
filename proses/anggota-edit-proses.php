@@ -1,5 +1,8 @@
 <?php
-include '../koneksi.php';
+require_once '../koneksi.php';
+
+// start stransaction
+mysqli_autocommit($db, false);
 
 // prevent sql inject
 $idanggota = isset($_POST['idanggota']) ? mysqli_real_escape_string($db, $_POST['idanggota']) : '';
@@ -30,6 +33,11 @@ if (isset($_POST['simpan'])) {
 	$stmt = $db->prepare("UPDATE tbanggota SET nama=?, email=?, jeniskelamin=?, alamat=?, foto=? WHERE idanggota=?");
 	$stmt->bind_param("ssssss", $nama, $email, $jenis_kelamin, $alamat, $file_foto, $idanggota);
 	$stmt->execute();
+
+	// commit transaction
+	mysqli_commit($db);
+
+	// close db
 	$stmt->close();
 
 	echo "<script>alert('data anggota barhasil diupdate');</script>";

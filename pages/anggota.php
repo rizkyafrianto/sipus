@@ -28,7 +28,7 @@
          <thead>
             <tr>
                <th scope="col">No</th>
-               <th scope="col">ID Anggota</th>
+               <th scope="col">ID</th>
                <th scope="col">Nama</th>
                <th scope="col">Email</th>
                <th scope="col">Foto</th>
@@ -37,9 +37,6 @@
                <th scope="col">Opsi</th>
             </tr>
          </thead>
-
-
-
 
          <?php
          $batas = 10;
@@ -52,6 +49,7 @@
             $posisi = ($hal - 1) * $batas;
             $nomor = $posisi + 1;
          }
+         // request data searching
          if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $pencarian = trim(mysqli_real_escape_string($db, $_POST['pencarian']));
             if ($pencarian != "") {
@@ -84,12 +82,12 @@
          ?>
                <tr>
                   <td><?php echo $nomor; ?></td>
-                  <td><?php echo strip_tags($row['idanggota']); ?></td>
-                  <td><?php echo strip_tags($row['nama']); ?></td>
-                  <td><?php echo strip_tags($row['email']); ?></td>
+                  <td><?php echo htmlspecialchars($row['idanggota']); ?></td>
+                  <td><?php echo htmlspecialchars($row['nama']); ?></td>
+                  <td><?php echo htmlspecialchars($row['email']); ?></td>
                   <td><img class="img rounded-circle" src="images/<?php echo $foto; ?>" width=40px height=40px></td>
-                  <td><?php echo strip_tags($row['jeniskelamin']); ?></td>
-                  <td><?php echo strip_tags($row['alamat']); ?></td>
+                  <td><?php echo htmlspecialchars($row['jeniskelamin']); ?></td>
+                  <td><?php echo htmlspecialchars($row['alamat']); ?></td>
                   <td>
                      <a target="_blank" class="btn btn-sm btn-success" href="pages/cetak_kartu.php?id=<?php echo $row['idanggota']; ?>"><i class="bi bi-printer"></i></a>
                      <a class="btn btn-sm btn-warning" href="index.php?p=anggota-edit&id=<?php echo $row['idanggota']; ?>"><i class="bi bi-pencil"></i></a>
@@ -104,6 +102,7 @@
       </table>
    </div>
    <?php
+   // give output result searching
    if (isset($_POST['pencarian'])) {
       if ($_POST['pencarian'] != '') {
          echo "<div style=\"float:left;\">";
