@@ -1,7 +1,10 @@
 <?php
-include '../koneksi.php';
+require_once '../koneksi.php';
 
 if (isset($_POST['simpan'])) {
+   // commit transaction, for concistency data
+   mysqli_autocommit($db, false);
+
    // Ambil data dari form
    $book_id = $_POST['book_id'];
    $book_title = $_POST['book_title'];
@@ -18,6 +21,10 @@ if (isset($_POST['simpan'])) {
 
    // Eksekusi query
    if ($stmt->execute()) {
+
+      // commit transaction
+      mysqli_commit($db);
+
       echo "<script>alert('data barhasil ditambahkan');</script>";
       echo "<meta http-equiv='refresh' content='0;url=../index.php?p=buku'>";
    } else {

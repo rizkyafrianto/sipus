@@ -51,8 +51,7 @@
                if ($pencarian != "") {
                   $sql = "SELECT * FROM book WHERE book_title LIKE '%$pencarian%'
 						OR author LIKE '%$pencarian%'
-						OR category LIKE '%$pencarian%'
-						OR publisher_name LIKE '%$pencarian%'";
+						OR category LIKE '%$pencarian%'";
 
                   $query = $sql;
                   $queryJml = $sql;
@@ -74,23 +73,25 @@
             ?>
                   <tr>
                      <td><?php echo $nomor; ?></td>
-                     <td><?php echo strip_tags($row['book_id']); ?></td>
-                     <td><?php echo strip_tags($row['book_title']); ?></td>
-                     <td><?php echo strip_tags($row['category']); ?></td>
-                     <td><?php echo strip_tags($row['author']); ?></td>
-                     <td><?php echo strip_tags($row['book_copies']); ?></td>
-                     <td><?php echo strip_tags($row['publisher_name']); ?></td>
+                     <td><?php echo htmlspecialchars($row['book_id']); ?></td>
+                     <td><?php echo htmlspecialchars($row['book_title']); ?></td>
+                     <td><?php echo htmlspecialchars($row['category']); ?></td>
+                     <td><?php echo htmlspecialchars($row['author']); ?></td>
+                     <td><?php echo htmlspecialchars($row['book_copies']); ?></td>
+                     <td><?php echo htmlspecialchars($row['publisher_name']); ?></td>
                      <td><?php echo $row['is_borrowed'] == 1 ? "Dipinjam" : "Tersedia"; ?></td>
                      <td>
-                        <a class="btn btn-sm btn-warning" href="index.php?p=buku-edit&id=<?php echo $row['book_id']; ?>"><i class="bi bi-pencil"></i></a>
-                        <a class="btn btn-sm btn-danger" href="proses/buku-hapus.php?id=<?php echo $row['book_id']; ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
+                        <a class="btn btn-sm btn-warning" href="index.php?p=buku-edit&id=<?php echo htmlspecialchars($row['book_id']); ?>"><i class="bi bi-pencil"></i></a>
+                        <a class="btn btn-sm btn-danger" href="proses/buku-hapus.php?id=<?php echo htmlspecialchars($row['book_id']); ?>" onclick="return confirm ('Apakah Anda Yakin Akan Menghapus Data Ini?')"><i class="bi bi-x-square"></i></a>
                      </td>
                   </tr>
-            <?php $nomor++;
+            <?php
+                  $nomor++;
                }
             } else {
                echo "<tr><td colspan=6>Data Tidak Ditemukan</td></tr>";
-            } ?>
+            }
+            ?>
          </tbody>
       </table>
    </div>
