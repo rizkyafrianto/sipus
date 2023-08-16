@@ -89,7 +89,7 @@
                   $nomor++;
                }
             } else {
-               echo "<tr><td colspan=6>Data Tidak Ditemukan</td></tr>";
+               echo "<tr><td colspan=12>Data Tidak Ditemukan</td></tr>";
             }
             ?>
          </tbody>

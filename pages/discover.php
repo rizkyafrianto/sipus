@@ -27,12 +27,12 @@
          <?php foreach ($books as $row) : ?>
             <div class="col-md-2 col-sm-4 mb-2">
                <div class="card" style="width: 150px;">
-                  <img src="images/1.jpg" class="card-img-top" style="height: 200px;">
+                  <img src="images/<?= $row['book_cover']; ?>" class="card-img-top" style="height: 200px;">
                   <div class="card-body">
                      <h5 class="fs-5 fw-bold mb-1"><?= $row["book_title"]; ?></h5>
                      <p class="m-0" style="font-size: small;"><?= $row["author"]; ?></p>
                      <p class="mb-1" style="font-size: small;"><?= $row["publisher_name"]; ?></p>
-                     <span href="#" class="" style="font-size: 11px;background-color:aqua;padding:3px;border-radius:5px;"><?= $row['category']; ?></span>
+                     <span href="#" class="text-light" style="font-size: 11px;background-color:#666;padding:3px;border-radius:5px;"><?= $row['category']; ?></span>
                   </div>
                </div>
             </div>

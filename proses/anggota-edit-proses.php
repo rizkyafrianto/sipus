@@ -13,7 +13,6 @@ $alamat = isset($_POST['alamat']) ? mysqli_real_escape_string($db, $_POST['alama
 
 
 if (isset($_POST['simpan'])) {
-
 	extract($_POST);
 	$nama_file   = $_FILES['foto']['name'];
 	if (!empty($nama_file)) {

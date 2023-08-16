@@ -30,6 +30,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
    <form action="proses/buku-edit-proses.php" method="post" enctype="multipart/form-data">
       <table id="tabel-input">
          <tr>
+            <td class="label-formulir">Book Cover</td>
+            <td class="isian-formulir">
+               <img class="mb-2" style='border:1px solid black;' src="images/<?php echo $row['book_cover']; ?>" width=70px height=75px>
+               <input type="file" name="book_cover" class="isian-formulir isian-formulir-border">
+               <input type="hidden" name="foto_awal" value="<?php echo htmlspecialchars($row['book_cover']); ?>">
+            </td>
+         </tr>
+         <tr>
             <td class="label-formulir">ID Buku</td>
             <td class="isian-formulir"><input type="text" name="book_id" class="isian-formulir isian-formulir-border" value="<?php echo htmlspecialchars($row['book_id']); ?>" readonly></td>
          </tr>

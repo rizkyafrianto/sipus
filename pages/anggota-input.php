@@ -6,12 +6,12 @@
 
       <table id="tabel-input">
          <tr>
-            <td class="label-formulir">FOTO</td>
-            <td class="isian-formulir"><input type="file" name="foto" class="isian-formulir isian-formulir-border" required></td>
-         </tr>
-         <tr>
             <td class="label-formulir">ID Anggota</td>
             <td class="isian-formulir"><input type="text" name="idanggota" class="isian-formulir isian-formulir-border" required></td>
+         </tr>
+         <tr>
+            <td class="label-formulir">FOTO</td>
+            <td class="isian-formulir"><input type="file" name="foto" class="isian-formulir isian-formulir-border" required></td>
          </tr>
          <tr>
             <td class="label-formulir">Nama</td>

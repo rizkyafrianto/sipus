@@ -53,6 +53,9 @@ if (isset($_SESSION['auth'])) {
                <li>
                   <a href="index.php?p=beranda"><i class="bi bi-house"></i> Home</a>
                </li>
+            </ul>
+            <p class="label-navigasi">Discover</p>
+            <ul>
                <li>
                   <a href="index.php?p=discover"><i class="bi bi-book"></i> Books</a>
                </li>
