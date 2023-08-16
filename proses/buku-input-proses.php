@@ -5,7 +5,6 @@ require_once '../config.php';
 mysqli_autocommit($db, false);
 
 // Ambil data dari form
-$book_id = $_POST['book_id'];
 $book_title = $_POST['book_title'];
 $category = $_POST['category'];
 $author = $_POST['author'];
@@ -20,7 +19,7 @@ if (isset($_POST['simpan'])) {
       // Read temporary file location and name from form (fupload)
       $lokasi_file = $_FILES['book_cover']['tmp_name'];
       $tipe_file = pathinfo($nama_file, PATHINFO_EXTENSION);
-      $file_foto = $book_id . "." . $tipe_file;
+      $file_foto = uniqid() . "." . $tipe_file;
 
       // Specify folder to store the file
       $folder = "../images/$file_foto";
@@ -33,7 +32,7 @@ if (isset($_POST['simpan'])) {
    $stmt = $db->prepare("INSERT INTO book (book_id, book_title, category, author, book_copies, publisher_name, book_cover) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
    // Bind parameters
-   $stmt->bind_param("ssssiss", $book_id, $book_title, $category, $author, $book_copies, $publisher_name, $file_foto);
+   $stmt->bind_param("isssiss", $book_id, $book_title, $category, $author, $book_copies, $publisher_name, $file_foto);
 
    // Eksekusi query
    if ($stmt->execute()) {

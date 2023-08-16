@@ -1,7 +1,7 @@
-<div id="label-page">
-    <h3>List Data Peminjaman</h3>
-</div>
 <div id="content">
+    <div id="label-page">
+        <h3>List Data Peminjaman</h3>
+    </div>
     <p id="tombol-tambah-container">
         <a href="index.php?p=addborrow" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Tambah Peminjaman</a>
     </p>

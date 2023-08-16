@@ -1,7 +1,7 @@
-<div id="label-page">
-   <h3>List Data Anggota</h3>
-</div>
 <div id="content">
+   <div id="label-page">
+      <h3>List Data Anggota</h3>
+   </div>
    <nav class="navbar navbar-expand bg-body-tertiary mb-3">
       <div class="container-fluid">
          <div class="collapse navbar-collapse" id="navbarSupportedContent">

@@ -21,10 +21,10 @@ if (isset($_SESSION['auth'])) {
 
    <body style="font-family: 'Times New Roman', Times, serif; ">
 
-      <nav class="navbar navbar-expand mb-2">
+      <nav class="navbar navbar-expand">
          <div class="container">
             <div class="d-flex">
-               <a class="navbar-brand text-light" href="#"><i class="bi bi-book"></i> PERPUSTAKAAN</a>
+               <a class="navbar-brand text-light" href="#"><i class="bi bi-book"></i> Library</a>
             </div>
 
             <div class="navbar-collapse justify-content-end">
@@ -54,18 +54,22 @@ if (isset($_SESSION['auth'])) {
                   <a href="index.php?p=beranda"><i class="bi bi-house"></i> Home</a>
                </li>
             </ul>
-            <p class="label-navigasi">Discover</p>
+            <p class="label-navigasi"><i class="bi bi-search"></i> Discover</p>
             <ul>
                <li>
                   <a href="index.php?p=discover"><i class="bi bi-book"></i> Books</a>
                </li>
             </ul>
-            <p class="label-navigasi">Data Master</p>
+            <p class="label-navigasi">
+               <i class="bi bi-people-fill"></i> Data Master
+            </p>
             <ul>
                <li><a href="index.php?p=anggota"><i class="bi bi-people-fill"></i> Member</a></li>
                <li><a href="index.php?p=buku"><i class="bi bi-book"></i> Book</a></li>
             </ul>
-            <p class="label-navigasi">Data Transaksi</p>
+            <p class="label-navigasi">
+               <i class="bi bi-bookshelf"></i> Data Transaksi
+            </p>
             <ul>
                <li><a href="index.php?p=listborrow"><i class="bi bi-clipboard-data"></i> Borrow</a></li>
                <li><a href="index.php?p=listreturn"><i class="bi bi-layer-backward"></i> Return</a></li>
@@ -73,7 +77,7 @@ if (isset($_SESSION['auth'])) {
             <p class="label-navigasi" style="color: white;">Laporan Transaksi</p>
          </div>
          <div id="content-container">
-            <div class="container p-3">
+            <div class="container py-3 px-0">
                <?php
                $pages_dir = 'pages';
                if (!empty($_GET['p'])) {
@@ -91,12 +95,14 @@ if (isset($_SESSION['auth'])) {
                ?>
             </div>
          </div>
-         <div id="footer" style="height: 40px;">
-            <h3>Library Management System</h3>
-         </div>
       </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+      <div id="footer">
+         <h3>Library Management System</h3>
+      </div>
+
+      <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+      </script>
 
    </body>
 

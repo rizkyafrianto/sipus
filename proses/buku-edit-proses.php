@@ -18,7 +18,7 @@ if (isset($_POST['simpan'])) {
       // Baca lokasi file sementar dan nama file dari form (fupload)
       $lokasi_file = $_FILES['book_cover']['tmp_name'];
       $tipe_file = pathinfo($nama_file, PATHINFO_EXTENSION);
-      $file_foto = $book_id . "." . $tipe_file;
+      $file_foto = uniqid() . "." . $tipe_file;
       // Tentukan folder untuk menyimpan file
       $folder = "../images/$file_foto";
       @unlink("$folder");
@@ -28,7 +28,7 @@ if (isset($_POST['simpan'])) {
       $file_foto = $foto_awal;
 
    $stmt = $db->prepare("UPDATE book SET book_title=?, category=?, author=?, book_copies=?, publisher_name=?, book_cover=? WHERE book_id=?");
-   $stmt->bind_param("sssssss", $book_title, $category, $author, $book_copies, $publisher_name, $file_foto, $book_id);
+   $stmt->bind_param("sssissi", $book_title, $category, $author, $book_copies, $publisher_name, $file_foto, $book_id);
 
    if ($stmt->execute()) {
 

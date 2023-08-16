@@ -6,10 +6,6 @@
 
       <table id="tabel-input">
          <tr>
-            <td class="label-formulir">ID Buku</td>
-            <td class="isian-formulir"><input type="text" name="book_id" class="isian-formulir isian-formulir-border" required></td>
-         </tr>
-         <tr>
             <td class="label-formulir">Judul Buku</td>
             <td class="isian-formulir"><input type="text" name="book_title" class="isian-formulir isian-formulir-border" required></td>
          </tr>

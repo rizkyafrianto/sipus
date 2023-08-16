@@ -1,7 +1,7 @@
-<div id="label-page">
-   <h3>Laporan Pengembalian Buku</h3>
-</div>
 <div id="content">
+   <div id="label-page">
+      <h3>Laporan Pengembalian Buku</h3>
+   </div>
    <table id="tabel-tampil">
       <tr>
          <th id="label-tampil-no">No.</th>
